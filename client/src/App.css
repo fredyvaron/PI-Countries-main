@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,11 @@
   to {
     transform: rotate(360deg);
   }
+} */
+body{
+  min-height: 100vh;
+  background: linear-gradient(rgba(5,7,12, 0.75), rgba(5,7,12, 0.75)),
+  url(ilustracion-mapa-mundo-banderas-todos-paises_37674-7.webp) no-repeat center center fixed;
+  background-size: cover;
+
 }

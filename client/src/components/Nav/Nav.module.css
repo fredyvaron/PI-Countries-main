@@ -1,0 +1,43 @@
+.menu{
+    display: flex;
+    min-height: 45px;
+    background-color: coral;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.link {
+    text-decoration: none;
+    color: black;
+}
+.logo{
+    display: flex;
+    align-items:  center;
+
+}
+
+.logo img{
+    height: 50px;
+    margin-right: 10px;
+}
+
+nav a{
+    font-weight: 600;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+nav a:hover{
+    color: white
+}
+
+@media (max-width:700px){
+    .menu{
+        flex-direction: column;
+
+    }
+    nav{
+        padding: 10px 0px;
+    }
+}
