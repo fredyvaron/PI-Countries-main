@@ -1,6 +1,9 @@
+
 .paginado{
     display: flex;
     list-style: none;
+    align-items: center;
+    justify-content: center;
 }
 .active{
     text-align: center;
@@ -12,4 +15,8 @@
 .btn{
     text-align: center;
     background-color: antiquewhite;
+}
+.btn1{
+    text-align: center;
+    background-color: white;
 }

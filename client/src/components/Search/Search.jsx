@@ -2,14 +2,17 @@ import React from 'react'
 import { useState} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { get_country_by_name} from "../../redux/actions"
+import stylesearch from "./Search.module.css"
 
 
-function Search(pagina) {
+const Search = ({setCurrentPage})=> {
   const dispatch = useDispatch()
     const [country, setCountry] = useState('');
     const countries = useSelector(state => state.allcountry)
     const handleChange = (e)=>{
+      e.preventDefault();
         setCountry(e.target.value);
+
     }
 
     const handleSubmit = (e)=>{
@@ -21,7 +24,7 @@ function Search(pagina) {
       }
       else {
       dispatch(get_country_by_name(country));
-      
+      setCurrentPage(1)
       setCountry('')
      
     }
@@ -30,10 +33,11 @@ function Search(pagina) {
     
 
   return (
-    <div>
+    <div className={stylesearch.container}>
 <form onSubmit={handleSubmit}>
-<input type="search" value={country} onChange={handleChange} />
-<input type="submit"/>
+<input className={stylesearch.input} type="search" value={country} placeholder="Search" onChange={handleChange} />
+<button type="submit" className={stylesearch.button}>🔍 Search</button>
+
 </form>
       
 

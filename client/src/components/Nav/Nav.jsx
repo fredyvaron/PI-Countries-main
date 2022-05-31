@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import stylenav from "./Nav.module.css"
 
 function Nav() {
@@ -12,10 +13,14 @@ function Nav() {
         </div>
       <nav>
         
+       <NavLink to="/countries" className={stylenav.nav_link}>
+         Home
+       </NavLink>
+ 
+       <NavLink to="/activity" className={stylenav.nav_link} >
+         Create Activity
+       </NavLink>
        
-        {/* <a href="" className={stylenav.nav_link}>Inicio</a>
-        <a href="" className={stylenav.nav_link}>Sobre nosotros</a>
-        <a href="" className={stylenav.nav_link}></a> */}
       </nav>
     </div>
   )
