@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { filter_by_activity, filter_by_continent, get_activity, get_all_countries, order_by_name, order_by_population} from "../redux/actions";
@@ -35,11 +35,14 @@ function Country() {
     e.preventDefault();
     dispatch(filter_by_continent(e.target.value))
     setCurrentPage(1)
+    setOrder(e.target.value)
+
   }
   function handleActivity (e){
     e.preventDefault();
     dispatch(filter_by_activity(e.target.value))
     setCurrentPage(1)
+  
   }
   function handlesorname(e){
     e.preventDefault();

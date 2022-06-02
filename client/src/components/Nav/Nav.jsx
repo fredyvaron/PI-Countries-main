@@ -6,10 +6,10 @@ function Nav() {
 
   return (
     <div className={stylenav.menu}>
-      
+    
         <div className={stylenav.logo}>
-        <img src="" alt="Logo" />
-        <h2 className={stylenav.name}>PI COUNTRIES</h2>
+       
+        <h2 className={stylenav.name}> PI COUNTRIES</h2>
         </div>
       <nav>
         

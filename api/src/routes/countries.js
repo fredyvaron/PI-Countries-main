@@ -71,8 +71,6 @@ if(idCountry){
 })
 if(paises){
   res.send(paises);
-}else{
-  res.status(404).json('Country not Found')
 }
 }
    

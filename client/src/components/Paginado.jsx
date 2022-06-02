@@ -4,24 +4,26 @@ import style from "./Paginado.module.css"
 function Paginado({ countryPorPage, country, paginado, cantidadprimero }) {
 
   const [status, setStatus] = useState(1);
+
   const maximo = country / countryPorPage
   const pageNumber = [];
 
-
+ 
 
   const nexpage =() =>{
     paginado(status+1)
     setStatus(status+1)
-    console.log("Estado para siguiente"+status+1)
+ 
 }
 const previuspage = ()=>{
   paginado(status-1)
   setStatus(status-1)
-  console.log("estado para anterior"+status-1)
+
 }
 const handleclick = (number)=>{
 
   setStatus(number)
+
   paginado(number)
 }
 
@@ -31,14 +33,18 @@ const handleclick = (number)=>{
   return (
     <nav className={style.containerpaginado}>
       <ul id="ul_pagina" className={style.paginado}>
+        <li>
         <button disabled={status===1||status<1} className={style.btn1}  onClick={previuspage}>Previus</button>
+        </li>
         {pageNumber?.map((number) => (
           <li key={number} id="pagina">
-              <button className={paginado === number ? style.active : style.btn} onClick={() => handleclick(number)}>{number} </button>
+              <button className={status === number ? style.active : style.btn} onClick={() => handleclick(number)}>{number} </button>
             
           </li>
         ))}
+        <li>
           <button disabled={status===maximo||status>maximo} className={style.btn1} onClick={nexpage}>Next</button>
+        </li>
       </ul>
     </nav>
   );

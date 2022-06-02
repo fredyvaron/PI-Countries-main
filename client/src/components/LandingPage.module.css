@@ -28,4 +28,22 @@
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 1px solid grey;
+    background: rgba(255,255,255,0.4);
+  }
+  .containerdiv h1{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+  .containerdiv a{
+    display: flex;
+    text-align: center;
+    justify-content: center;
   }

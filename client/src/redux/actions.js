@@ -12,35 +12,35 @@ export const ORDER_POPULATION = "ORDER_POPULATION";
 
 export const get_all_countries = ()=>{
     return async(dispatch)=>{
-        const json = await axios.get("http://localhost:3001/countries");
+        const json = await axios.get("/countries");
         dispatch({ type: GET_ALL_CONTRIES, payload: json.data });
     }
 
 }
 export const get_show_detail = (id)=>{
     return async(dispatch)=>{
-        const json = await axios.get(`http://localhost:3001/countries/${id}`);
+        const json = await axios.get(`/countries/${id}`);
         dispatch({ type: GET_DETAIL_CONTRY, payload: json.data });
     }
     
 }
 export const get_country_by_name = (name) => {
     return (dispatch) => {
-      return axios(`http://localhost:3001/countries?name=${name}`)
+      return axios(`/countries?name=${name}`)
         .then(res => dispatch({ type: GET_COUNTRY_BY_NAME, payload: res.data }))
         .catch(e => console.log(e))
     }
 }
 export const post_activity = (payload)=>{
     return async (dispatch)=>{
-        const json = await axios.post("http://localhost:3001/activity", payload)
+        const json = await axios.post("/activity", payload)
         console.log(json)  
         return json;
         } 
 }
 export const get_activity = () =>{
     return async(dispatch)=>{
-        const json = await axios.get("http://localhost:3001/activity");
+        const json = await axios.get("/activity");
         dispatch({type:GET_ACTIVITY, payload: json.data })
     }
 }

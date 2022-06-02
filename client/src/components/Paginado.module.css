@@ -4,19 +4,23 @@
     list-style: none;
     align-items: center;
     justify-content: center;
+
 }
 .active{
     text-align: center;
     background-color: aqua;
+    padding: 4px 5px;
 }
 .btn:hover{
     background-color: blueviolet;
 }
 .btn{
     text-align: center;
-    background-color: antiquewhite;
+    background-color: rgba(255,254,255,0.8);
+    padding: 4px 5px;
 }
 .btn1{
     text-align: center;
     background-color: white;
+    padding: 4px 5px;
 }
