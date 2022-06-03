@@ -52,9 +52,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
         country: continentFilter,
       };
     case FILTER_BY_ACTIVITY:
+      const allcountryactivity = state.allcountry
+      const activityFilter = 
+      payload === "All"
+      ?allcountryactivity.filter(m => m.activities.length)
+      :allcountryactivity.filter((e) => e.activities && e.activities.map((m) => m.name).includes(payload))
       return {
         ...state,
-        country: state.allcountry.filter(  (e) => e.activities && e.activities.map((m) => m.name).includes(payload)),
+        country: activityFilter,
       };
     case ORDER_NAME:
       const ordername =

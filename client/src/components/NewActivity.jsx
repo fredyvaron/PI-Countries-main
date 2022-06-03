@@ -47,7 +47,6 @@ function NewActivity() {
 
   const handlesubmit = (e) => {
     e.preventDefault();
-    console.log(!error?.name);
     if (!input.name || !input.difficulty || !input.duration || !input.season) {
       alert("Error Data not Completed");
     } else if (
@@ -99,7 +98,6 @@ function NewActivity() {
 
   const handledelete = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
     setInput({
       ...input,
       country: input.country.filter((c) => c !== e.target.value),

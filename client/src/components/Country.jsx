@@ -21,9 +21,7 @@ function Country() {
  const currentCountry = country.slice(indexOfFirstCountry, indexOfLastCountry)
 
  const paginate = pageNumber =>{
-  
    setCurrentPage(pageNumber)
-   console.log(currentPage)
  }
 
   useEffect(() => {
@@ -82,9 +80,8 @@ function Country() {
         <option value="Oceania">Oceania</option>
         <option value="Americas">Americas</option>
         </select>
-
         <select onChange={e=>handleActivity(e)}>
-          <option disabled selected>Activity</option>
+          <option value="All">Activity</option>
           {activitys.length && activitys.map((a)=>{
             return (
               <option value={a.name} key={a.id}>

@@ -23,6 +23,9 @@ function Detalle(props) {
 
   }else{
   return (
+    
+
+    
     <div className={styledetails.container}>
       <div className={styledetails.countrys}>
       <Link to="/countries"><button>Back</button></Link>
@@ -54,6 +57,7 @@ function Detalle(props) {
       </div>
       {console.log(country_detail)}
     </div>
+ 
   );
 
 }

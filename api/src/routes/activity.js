@@ -41,43 +41,6 @@ router.post("/", async (req, res, next) => {
     console.log(error);
   }
 });
-router.delete("/", async (req, res, next) => {
-  try {
-    const { idactivity, idcountry } = req.body;
-    const idact = await Activity.findByPk(idactivity);
-    const countr = await Country.findOne({
-      where: {
-        id: idcountry,
-      },
-    });
-    console.log(idact);
-    await idact.removeCountry(countr);
-    res.send("elimino la actividad al pais");
-  } catch (error) {
-    console.log(error);
-  }
-});
-router.put("/", async (req, res, next) => {
-  try {
-    const { id, name, difficulty, duration, season } = req.body;
-    console.table(req.body)
-    const idds = await Activity.findByPk(id);
-    const resul = Activity.update(
-      {
-        name: name,
-        difficulty: difficulty,
-        duration: duration,
-        season: season,
-      },
-      {
-        where: {
-          id: id,
-        },
-      }
-    );
-    res.send("se Actualizo");
-  } catch (error) {
-    console.log(error);
-  }
-});
+
+
 module.exports = router;
