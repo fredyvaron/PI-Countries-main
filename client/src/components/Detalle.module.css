@@ -2,10 +2,6 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    
-  
-
-
 }
 
 .container button{
@@ -41,7 +37,7 @@
     background: rgba(255,255,255,0.4);
     font-weight: 400;
     padding: 40px;
-    margin: 20px 20px 0px 50px;
+    margin: 20px;
 }
 .activitys{
     width: 100%;
@@ -60,9 +56,6 @@
 .card_activity{
     display: flex;
     flex-flow: row wrap;
- 
-  
-   
 }
 .card_body{
     width: 180px;
