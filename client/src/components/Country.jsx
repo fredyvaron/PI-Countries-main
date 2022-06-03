@@ -81,7 +81,7 @@ function Country() {
         <option value="Americas">Americas</option>
         </select>
         <select onChange={e=>handleActivity(e)}>
-          <option value="All">Activity</option>
+          <option value="All">All</option>
           {activitys.length && activitys.map((a)=>{
             return (
               <option value={a.name} key={a.id}>
