@@ -13,7 +13,7 @@ function Country() {
   const country = useSelector((state) => state.country);
   const activitys = useSelector((state)=> state.activity)
  const [currentPage, setCurrentPage] = useState(1);
- const [countryPage, setCountryPage] = useState(9);
+ const [countryPage, setCountryPage] = useState(10);
 
 
  const indexOfLastCountry = currentPage ===1 ? 9:currentPage * countryPage -1

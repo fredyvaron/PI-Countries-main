@@ -20,6 +20,7 @@ const initialState = {
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_ALL_CONTRIES:
+      console.log(payload)
       return {
         ...state,
         country: payload,

@@ -10,8 +10,8 @@ function Paginado({ countryPorPage, country, paginado, cantidadprimero }) {
     setStatus(number);
     paginado(number);
   };
-
-  for (let i = 1; i <= Math.ceil(country / countryPorPage); i++) {
+  const data = country +1
+  for (let i = 1; i <= Math.ceil(data / countryPorPage); i++) {
     pageNumber.push(i);
   }
   return (
