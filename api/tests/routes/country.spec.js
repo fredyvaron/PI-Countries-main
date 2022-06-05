@@ -14,11 +14,17 @@ describe('Country routes', () => {
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
   }));
-  beforeEach(() => Country.sync({ force: true })
-    .then(() => Country.create(pokemon)));
-  describe('GET /countries', () => {
-    it('should get 200', () =>
-      agent.get('/countries').expect(200)
-    );
+
+
+  describe('GET /detail:idcountries',()=>{
+    it('should get 200', ()=>{
+      agent.get('/countries/Col').expect(200)
+    });
+    it("should get 404", ()=>{
+      agent.get('/countries/col1').expect(404)
+    });
+    it("should get /detail by query", ()=>{
+      agent.get('/countries?name=colombia').expect(404)
+    })
   });
 });

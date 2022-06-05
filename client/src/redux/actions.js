@@ -18,15 +18,16 @@ export const get_all_countries = ()=>{
 
 }
 export const get_show_detail = (id)=>{
-    return async(dispatch)=>{
-        const json = await axios.get(`/countries/${id}`);
-        dispatch({ type: GET_DETAIL_CONTRY, payload: json.data });
+    return (dispatch)=>{
+        return axios.get(`/countries/${id}`)
+        .then(res => dispatch({ type: GET_DETAIL_CONTRY, payload: res.data }))
+        .catch(e => console.log(e))
     }
     
 }
 export const get_country_by_name = (name) => {
     return (dispatch) => {
-      return axios(`/countries?name=${name}`)
+      return axios.get(`/countries?name=${name}`)
         .then(res => dispatch({ type: GET_COUNTRY_BY_NAME, payload: res.data }))
         .catch(e => console.log(e))
     }

@@ -4,10 +4,9 @@ const { Country, Activity } = require("../db");
 const axios = require("axios");
 const { Op } = require("sequelize");
 
-
 const getfromDb = async () => {
   const data = await Country.findAll({
-    include: Activity
+    include: Activity,
   });
   return data;
 };
@@ -27,7 +26,6 @@ router.get("/", async (req, res, next) => {
           capital: p.capital ? p.capital[0] : "Not found",
           subregion: p.subregion ? p.subregion : "Not Found",
           area: Math.round(p.area),
-          subregion: p.subregion,
           population: p.population,
         };
       });
@@ -35,50 +33,47 @@ router.get("/", async (req, res, next) => {
       let pais = await Country.bulkCreate(getcountry);
 
       res.status(200).send(pais);
-    }else{
+    } else {
       const { name } = req.query;
       // name.charAt(0).toUpperCase()
-      if(name){
-       
+      if (name) {
         const countrybyname = await Country.findAll({
           where: {
             name: {
-              [Op.iLike]: `%${name}%`
-            }
-          }
-        })
-        
-        countrybyname.length ? res.status(200).send(countrybyname): res.status(404).send("Country not found");
-      }else{
-        res.status(200).send(dataget)
+              [Op.iLike]: `%${name}%`,
+            },
+          },
+        });
+        countrybyname.length
+          ? res.status(200).send(countrybyname)
+          : res.status(404).send("Country not found");
+      } else {
+        res.status(200).send(dataget);
       }
     }
   } catch (error) {
-      console.log(error)
+    console.log(error);
   }
 });
 router.get("/:idCountry", async (req, res, next) => {
-
   try {
     const { idCountry } = req.params;
-    
-if(idCountry){
-  let paises = await Country.findOne({
-    where: {
-        id: idCountry.toUpperCase()
-    },
-    include: Activity
-})
-if(paises){
-  res.send(paises);
-}
-}
-   
 
-    
+    if (idCountry) {
+      let paises = await Country.findOne({
+        where: {
+          id: idCountry.toUpperCase(),
+        },
+        include: Activity,
+      });
+      if (paises) {
+        res.status(200).send(paises);
+      }else{
+        res.status(404).send("error")
+      }
+    }
   } catch (error) {
-      console.log(error)
+    console.log(error);
   }
-  
 });
 module.exports = router;

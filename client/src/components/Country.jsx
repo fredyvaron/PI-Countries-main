@@ -13,11 +13,13 @@ function Country() {
   const country = useSelector((state) => state.country);
   const activitys = useSelector((state)=> state.activity)
  const [currentPage, setCurrentPage] = useState(1);
- const [countryPage, setCountryPage] = useState(10);
+ const [countryPage, setCountryPage] = useState(9);
 
 
- const indexOfLastCountry = currentPage * countryPage
- const indexOfFirstCountry = indexOfLastCountry - countryPage
+ const indexOfLastCountry = currentPage ===1 ? 9:currentPage * countryPage -1
+ console.log(indexOfLastCountry)
+ const indexOfFirstCountry = currentPage===1?0:indexOfLastCountry - countryPage
+ console.log(indexOfFirstCountry)
  const currentCountry = country.slice(indexOfFirstCountry, indexOfLastCountry)
 
  const paginate = pageNumber =>{
@@ -61,7 +63,7 @@ function Country() {
  
       <div className={styleCountry.containerselect}>
         <select onChange={e=>handlesortpopulation(e)}>
-          <option disabled selected>Populatation</option>
+          <option hidden >Populatation</option>
           <option value="Asc">Ascendente</option>
           <option value="Desc">Descendente</option>
         </select>
