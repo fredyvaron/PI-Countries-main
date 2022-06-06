@@ -9,7 +9,7 @@ function Paginado({ countryPorPage, country, paginado, cantidadprimero }) {
   const handleclick = (number) => {
     setStatus(number);
     paginado(number);
-  };
+  }; 
   const data = country +1
   for (let i = 1; i <= Math.ceil(data / countryPorPage); i++) {
     pageNumber.push(i);
