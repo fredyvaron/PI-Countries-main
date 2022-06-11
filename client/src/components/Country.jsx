@@ -2,13 +2,15 @@ import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { filter_by_activity, filter_by_continent, get_activity, get_all_countries, order_by_name, order_by_population} from "../redux/actions";
+import { filter_by_activity, filter_by_continent, get_activity, get_all_countries, get_country_filter_menor, order_by_name, order_by_population} from "../redux/actions";
 import styleCountry from "./Country.module.css"
 import Search from "./Search/Search"
 import Paginado from "./Paginado";
 import CardCountry from "./CardCountry";
 function Country() {
+
   const dispatch = useDispatch();
+  
   const [order, setOrder] = useState()
   const country = useSelector((state) => state.country);
   const activitys = useSelector((state)=> state.activity)
@@ -56,12 +58,19 @@ function Country() {
     setCurrentPage(1)
     setOrder(e.target.value)
   }
+  function handleButton (e){
+    e.preventDefault();
+    dispatch(get_country_filter_menor())
+    setCurrentPage(1);
+    setOrder()
+  }
 
   return (
     <div>
       <Search  setCurrentPage={setCurrentPage}/>
- 
+      
       <div className={styleCountry.containerselect}>
+      {/* <button onClick={handleButton}> Menor</button> */}
         <select onChange={e=>handlesortpopulation(e)}>
           <option hidden >Populatation</option>
           <option value="Asc">Ascendente</option>
@@ -130,3 +139,5 @@ function Country() {
   );
 }
 export default Country;
+
+

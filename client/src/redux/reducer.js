@@ -8,6 +8,10 @@ import {
   ORDER_NAME,
   ORDER_POPULATION,
   CREATE_ACTIVIY_COUNTRY,
+  get_country_filter_menor,
+  Filter_Menor,
+  RESET_DETAIL,
+  DELETE_ACTIVITY,
 } from "./actions";
 
 const initialState = {
@@ -65,8 +69,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case ORDER_NAME:
       const ordername =
         payload === "asc"
-          ? state.allcountry.sort((a, b) => a.name.localeCompare(b.name))
-          : state.allcountry.sort((a, b) => b.name.localeCompare(a.name));
+          ? state.country.sort((a, b) => a.name.localeCompare(b.name))
+          : state.country.sort((a, b) => b.name.localeCompare(a.name));
       return {
         ...state,
         country: ordername,
@@ -74,13 +78,29 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case ORDER_POPULATION:
       const orderpopulation =
         payload === "Asc"
-          ? state.allcountry.sort((a, b) => a.population - b.population)
-          : state.allcountry.sort((a, b) => b.population - a.population);
+          ? state.country.sort((a, b) => a.population - b.population)
+          : state.country.sort((a, b) => b.population - a.population);
       return {
         ...state,
         country: orderpopulation,
       };
 
+      case Filter_Menor: 
+      return{
+        ...state,
+        country: state.allcountry.filter(a => a.population<30000000)
+      }
+      case RESET_DETAIL:
+        return{
+          ...state,
+          country_detail: []
+          
+        }
+      case DELETE_ACTIVITY:
+        return{
+          ...state,
+          country_detail: payload
+        }
     //const allCountriese = state.allcountry;
     // if(payload==="All"){
     //     return {

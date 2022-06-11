@@ -2,6 +2,7 @@ const { Router } = require("express");
 const router = Router();
 const { Country, Activity } = require("../db");
 const axios = require("axios");
+
 router.get("/", async (req, res, next) => {
   try {
     const resul = await Activity.findAll();
@@ -14,6 +15,17 @@ router.get("/", async (req, res, next) => {
     console.log(error);
   }
 });
+router.get("/a/", async (req, res, next)=>{
+  const {actividad} = req.body
+  const countr = await Activity.count({
+    where: {
+      id: actividad
+    },
+    include: Country
+  })
+  console.log(countr)
+
+})
 
 router.post("/", async (req, res, next) => {
   try {
@@ -41,6 +53,35 @@ router.post("/", async (req, res, next) => {
     console.log(error);
   }
 });
+
+router.delete("/", async (req, res, next)=>{
+  try {
+    const {id_activity, id_country} = req.body
+    const activitys = await Activity.findOne({
+      where:{
+        id: id_activity
+      }
+    });
+    console.log(activitys.length)
+    const counstrys = await Country.findByPk(id_country);
+    await activitys.removeCountry(counstrys)
+    let paises = await Country.findOne({
+      where: {
+        id: id_country,
+      },
+      include: Activity,
+    });
+
+    if (paises) {
+      res.status(200).send(paises);
+    }
+  } catch (error) {
+    res.status(404).send(error)
+    console.log(error)
+  }
+
+
+})
 
 
 module.exports = router;

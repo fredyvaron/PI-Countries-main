@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { get_show_detail } from "../redux/actions";
+import { delete_activity, get_show_detail, reset_detail } from "../redux/actions";
 import styledetails from "./Detalle.module.css";
 import NotFound from "./NotFound";
 function Detalle(props) {
   const dispatch = useDispatch();
+
   
   const country_detail = useSelector((state) => state.country_detail);
   const id = props.match.params.id;
   const len = country_detail.length
-  console.log(len)
 
   useEffect(() => {
     dispatch(get_show_detail(id));
+
+   
   }, [dispatch]);
+
+  const handleDelete = (e)=>{
+    e.preventDefault();
+    dispatch(delete_activity({id_activity: e.target.value, id_country: id }))
+  }
   if(len===0){
     return(
 <NotFound/>
@@ -23,9 +30,6 @@ function Detalle(props) {
 
   }else{
   return (
-    
-
-    
     <div className={styledetails.container}>
       <div className={styledetails.countrys}>
       <Link to="/countries"><button>Back</button></Link>
@@ -50,6 +54,7 @@ function Detalle(props) {
                   <p>Difficulty: {e.difficulty}</p>
                   <p>Duration: {e.duration}</p>
                   <p>Season: {e.season}</p>
+                  <button name="id_activity" value={e.id} onClick={e => handleDelete(e)}>X</button>
                 </div>
               );
             })}

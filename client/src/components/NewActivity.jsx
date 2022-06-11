@@ -103,6 +103,8 @@ function NewActivity() {
       country: input.country.filter((c) => c !== e.target.value),
     });
   };
+
+  // * Inicio render
   return (
     <div >
       <Link to="countries">

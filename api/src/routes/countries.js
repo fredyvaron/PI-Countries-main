@@ -60,6 +60,7 @@ router.get("/:idCountry", async (req, res, next) => {
     const { idCountry } = req.params;
 
     if (idCountry) {
+      //findByPk
       let paises = await Country.findOne({
         where: {
           id: idCountry.toUpperCase(),
@@ -76,4 +77,5 @@ router.get("/:idCountry", async (req, res, next) => {
     console.log(error);
   }
 });
+
 module.exports = router;

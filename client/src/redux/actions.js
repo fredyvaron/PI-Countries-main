@@ -9,6 +9,10 @@ export const FILTER_CONTINENT = "FILTER_CONTINENT";
 export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
 export const ORDER_NAME = "ORDER_NAME";
 export const ORDER_POPULATION = "ORDER_POPULATION";
+export const RESET_DETAIL = "RESET_DETAIL";
+export const Filter_Menor = "Filter_Menor";
+export const DELETE_ACTIVITY = "DELETE_ACTIVITY";
+
 
 export const get_all_countries = ()=>{
     return async(dispatch)=>{
@@ -39,6 +43,12 @@ export const post_activity = (payload)=>{
         return json;
         } 
 }
+export const delete_activity = (payload)=>{
+    return async (dispatch) =>{
+        const json = await axios.delete("/activity", {data: { id_activity: payload.id_activity, id_country: payload.id_country}})
+        dispatch({type: DELETE_ACTIVITY, payload : json.data})
+    }
+}
 export const get_activity = () =>{
     return async(dispatch)=>{
         const json = await axios.get("/activity");
@@ -65,16 +75,29 @@ export const order_by_population = (payload)=>{
         type: ORDER_POPULATION, payload
     }
 }
-// export const get_country_by_name = (name)=>{
-//     // return async(dispatch)=>{
-//     //     try {
-//     //         console.log(name)
-//     //         const json = axios.get(`http://localhost:3001/countries?name=${name}`);
-//     //         dispatch({ type: GET_COUNTRY_BY_NAME, payload: json.data});            
-//     //     } catch (error) {
-//     //         console.log(error)
-//     //     }
+export const reset_detail = ()=>{
+    return {
+        type: RESET_DETAIL, payload: {}
+    }
+}
 
-//     // }
+export const get_country_filter_menor = () =>{
+    return {
+        type: Filter_Menor
+    }
+        
+    }
+
+// export const get_country_by_name = (name)=>{
+    // return async(dispatch)=>{
+    //     try {
+    //         console.log(name)
+    //         const json = axios.get(`http://localhost:3001/countries?name=${name}`);
+    //         dispatch({ type: GET_COUNTRY_BY_NAME, payload: json.data});            
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+
+    // }
 // }
 
