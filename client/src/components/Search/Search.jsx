@@ -18,7 +18,7 @@ const Search = ({setCurrentPage})=> {
     const handleSubmit = (e)=>{
       e.preventDefault();
       if(!countries.find(c=> c.name.toLowerCase().includes(country.toLowerCase()))){
-        console.log(countries)
+      
         alert("pais Not Fount")
         setCountry('')
       }

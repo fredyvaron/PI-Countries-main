@@ -24,7 +24,7 @@ const initialState = {
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_ALL_CONTRIES:
-      console.log(payload)
+
       return {
         ...state,
         country: payload,
@@ -51,7 +51,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         payload === "All"
           ? allCountries
           : allCountries.filter((e) => e.continent === payload);
-      console.log(continentFilter);
+
       return {
         ...state,
         country: continentFilter,

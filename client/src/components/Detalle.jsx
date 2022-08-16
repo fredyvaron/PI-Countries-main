@@ -5,16 +5,27 @@ import { Link } from "react-router-dom";
 import { delete_activity, get_show_detail, reset_detail } from "../redux/actions";
 import styledetails from "./Detalle.module.css";
 import NotFound from "./NotFound";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import useBoolean from "../hooks/useBoolean";
 function Detalle(props) {
   const dispatch = useDispatch();
 
-  
+  const [cargando, setCargando] = useBoolean(false);
+  const [error, setError] = useBoolean(false);
   const country_detail = useSelector((state) => state.country_detail);
   const id = props.match.params.id;
   const len = country_detail.length
 
   useEffect(() => {
-    dispatch(get_show_detail(id));
+
+    setCargando.on()
+    dispatch(get_show_detail(id))
+    .then((response) => response)
+    .catch((error) => {
+      setError.on();
+    })
+    .finally(() => setCargando.off());
 
    
   }, [dispatch]);
@@ -23,14 +34,17 @@ function Detalle(props) {
     e.preventDefault();
     dispatch(delete_activity({id_activity: e.target.value, id_country: id }))
   }
-  if(len===0){
-    return(
-<NotFound/>
-    )
 
-  }else{
   return (
-    <div className={styledetails.container}>
+    <>
+    {error? ( <div>Error</div>): null}
+      {cargando ? (
+        <div>
+          <Skeleton />
+          <Skeleton count={7} />
+        </div>
+      ) : (
+        <div className={styledetails.container}>
       <div className={styledetails.countrys}>
       <Link to="/countries"><button>Back</button></Link>
         <img src={country_detail.flagimage} alt="" />
@@ -60,12 +74,16 @@ function Detalle(props) {
             })}
         </div>
       </div>
-      {console.log(country_detail)}
+     
     </div>
+      )
+          }
+    </>
+    
  
   );
 
 }
-}
+
 
 export default Detalle;

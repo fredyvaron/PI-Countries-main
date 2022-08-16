@@ -21,7 +21,7 @@ function Paginado({ countryPorPage, country, paginado, cantidadprimero }) {
   }
   const data = country + 1;
   const max = Math.ceil(data / countryPorPage);
-  console.log(max, "max")
+
   for (let i = 1; i <=max; i++) {
     pageNumber.push(i);
   }
