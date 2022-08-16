@@ -5,12 +5,13 @@ import { Link } from "react-router-dom";
 import { delete_activity, get_show_detail, reset_detail } from "../redux/actions";
 import styledetails from "./Detalle.module.css";
 import NotFound from "./NotFound";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+
 import useBoolean from "../hooks/useBoolean";
+import MoonLoader from "react-spinners/MoonLoader";
 function Detalle(props) {
   const dispatch = useDispatch();
-
+  let [loading, setLoading] = useState(true);
+  let [color, setColor] = useState("#ffffff");
   const [cargando, setCargando] = useBoolean(false);
   const [error, setError] = useBoolean(false);
   const country_detail = useSelector((state) => state.country_detail);
@@ -39,9 +40,18 @@ function Detalle(props) {
     <>
     {error? ( <div>Error</div>): null}
       {cargando ? (
-        <div>
-          <Skeleton />
-          <Skeleton count={7} />
+        <div style={{marginTop: '50px'}}>
+          
+          <MoonLoader
+  cssOverride={{
+    display: 'block',
+    margin: '0 auto'
+  }}
+  loading
+  size={150}
+/>
+
+
         </div>
       ) : (
         <div className={styledetails.container}>

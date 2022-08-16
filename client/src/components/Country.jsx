@@ -16,9 +16,12 @@ import Search from "./Search/Search";
 import Paginado from "./Paginado";
 import CardCountry from "./CardCountry";
 import useBoolean from "../hooks/useBoolean";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+
+import MoonLoader from "react-spinners/MoonLoader";
+
 function Country() {
+  let [loading, setLoading] = useState(true);
+  let [color, setColor] = useState("#ffffff");
   const dispatch = useDispatch();
 
   const [cargando, setCargando] = useBoolean(false);
@@ -126,9 +129,16 @@ function Country() {
       </div>
       {error? ( <div>Error</div>): null}
       {cargando ? (
-        <div>
-          <Skeleton />
-          <Skeleton count={7} />
+        <div style={{marginTop: '50px'}}>
+<MoonLoader
+  color="white"
+  cssOverride={{
+    display: 'block',
+    margin: '0 auto'
+  }}
+  loading
+  size={150}
+/>
         </div>
       ) : (
         <>
