@@ -31,8 +31,7 @@ let sequelize =
       host: DB_HOST,
       dialect: 'postgres'
     });
-console.log(DB_PORT)
-console.log(process.env)
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -53,7 +52,6 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-console.log(sequelize.models)
 const { Activity, Country } = sequelize.models;
 
 // Aca vendrian las relaciones
