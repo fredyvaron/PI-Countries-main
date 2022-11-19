@@ -31,7 +31,8 @@ let sequelize =
       host: DB_HOST,
       dialect: 'postgres'
     });
-
+console.log(DB_PORT)
+console.log(process.env)
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
